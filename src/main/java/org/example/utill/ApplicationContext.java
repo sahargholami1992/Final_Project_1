@@ -39,11 +39,12 @@ public class ApplicationContext {
         SERVICE_REPOSITORY = new ServiceRepositoryImpl(entityManager);
         SUB_SERVICE_REPOSITORY = new SubServiceRepositoryImpl(entityManager);
         SUB_SERVICE_SERVICE = new SubServiceServiceImpl(SUB_SERVICE_REPOSITORY);
-        ADMIN_SERVICE = new AdminServiceImpl(ADMIN_REPOSITORY,SUB_SERVICE_SERVICE);
-        CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY);
-        EXPERT_SERVICE = new ExpertServiceImpl(EXPERT_REPOSITORY);
-        ORDER_SERVICE = new OrderServiceImpl(ORDER_REPOSITORY);
         SERVICE_SERVICE = new ServiceServiceImpl(SERVICE_REPOSITORY);
+        EXPERT_SERVICE = new ExpertServiceImpl(EXPERT_REPOSITORY);
+        ADMIN_SERVICE = new AdminServiceImpl(ADMIN_REPOSITORY,SUB_SERVICE_SERVICE,SERVICE_SERVICE,EXPERT_SERVICE);
+        CUSTOMER_SERVICE = new CustomerServiceImpl(CUSTOMER_REPOSITORY,SUB_SERVICE_SERVICE,SERVICE_SERVICE);
+        ORDER_SERVICE = new OrderServiceImpl(ORDER_REPOSITORY);
+
 
     }
 
