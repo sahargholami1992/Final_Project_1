@@ -28,8 +28,9 @@ public class BaseServiceImpl<ID extends Serializable, T extends BaseEntity<ID>,
 
     @Override
     public T load(ID id) {
-        Optional<T> optionalEntity = repository.findById(id);
-        return optionalEntity.orElse(null);
+//        Optional<T> optionalEntity = repository.findById(id);
+//        return optionalEntity.orElse(null);
+        return repository.findById(id).orElseThrow(() -> new NullPointerException("ID NOT FOUND"));
     }
 
     @Override
