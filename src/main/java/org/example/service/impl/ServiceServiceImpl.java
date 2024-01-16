@@ -10,4 +10,14 @@ public class ServiceServiceImpl extends BaseServiceImpl<Integer, Service, Servic
     public ServiceServiceImpl(ServiceRepository repository) {
         super(repository);
     }
+
+    @Override
+    public boolean existByServiceName(String serviceName) {
+        return repository.existByServiceName(serviceName);
+    }
+
+    @Override
+    public Service findByServiceName(String serviceName) {
+        return repository.findByServiceName(serviceName).orElseThrow(() -> new NullPointerException("userName or password is wrong"));
+    }
 }

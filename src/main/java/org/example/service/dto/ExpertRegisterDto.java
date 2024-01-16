@@ -8,6 +8,7 @@ import org.example.entity.enumaration.Roll;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -18,19 +19,19 @@ public class ExpertRegisterDto implements Serializable {
     private String email;
 
     private String password;
-    private Date dateRegister;
+    private LocalDate dateRegister;
     private Roll roll;
     private Permission permission;
     private ExpertStatus expertStatus;
     private int score;
     private byte[] profileImage;
 
-    public ExpertRegisterDto(String firstName, String lastName, String email, String password, Date dateRegister, byte[] profileImage) {
+    public ExpertRegisterDto(String firstName, String lastName, String email, String password, byte[] profileImage) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.dateRegister = dateRegister;
+        this.dateRegister = LocalDate.now();
         this.roll = Roll.EXPERT;
         this.permission = Permission.WAITING;
         this.expertStatus = ExpertStatus.NEW;

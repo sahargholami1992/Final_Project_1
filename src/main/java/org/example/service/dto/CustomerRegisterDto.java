@@ -5,6 +5,7 @@ import org.example.entity.enumaration.Permission;
 import org.example.entity.enumaration.Roll;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 @Getter
 public class CustomerRegisterDto implements Serializable {
@@ -14,17 +15,17 @@ public class CustomerRegisterDto implements Serializable {
     private String email;
 
     private String password;
-    private Date dateRegister;
+    private LocalDate dateRegister;
     private Roll roll;
     private Permission permission;
 
 
-    public CustomerRegisterDto(String firstName, String lastName, String email, String password, Date dateRegister) {
+    public CustomerRegisterDto(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.dateRegister = dateRegister;
+        this.dateRegister = LocalDate.now();
         this.roll = Roll.CUSTOMER;
         this.permission = Permission.ACCEPTED;
     }
