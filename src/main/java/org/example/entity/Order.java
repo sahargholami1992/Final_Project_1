@@ -5,6 +5,7 @@ import org.example.base.entity.BaseEntity;
 import org.example.entity.enumaration.StatusOrder;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -20,10 +21,9 @@ public class Order extends BaseEntity<Integer> {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private SubService subService;
     private String address;
-    private double RecommendedPrice;
+    private double recommendedPrice;
     private String description;
-    @Temporal(TemporalType.DATE)
-    private Date dateDoOrder;
+    private LocalDate dateDoOrder;
     @Enumerated(EnumType.STRING)
     private StatusOrder statusOrder;
     @OneToOne
