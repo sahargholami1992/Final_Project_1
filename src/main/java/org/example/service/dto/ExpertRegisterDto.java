@@ -1,7 +1,6 @@
 package org.example.service.dto;
 
 import lombok.Getter;
-import org.example.entity.SubService;
 import org.example.entity.enumaration.ExpertStatus;
 import org.example.entity.enumaration.Permission;
 import org.example.entity.enumaration.Roll;
@@ -34,7 +33,7 @@ public class ExpertRegisterDto implements Serializable {
         this.dateRegister = LocalDate.now();
         this.roll = Roll.EXPERT;
         this.permission = Permission.WAITING;
-        this.expertStatus = ExpertStatus.NEW;
+        this.expertStatus = ExpertStatus.AWAITING_CONFIRMATION;
         this.score = 0;
         this.profileImage = profileImage;
     }

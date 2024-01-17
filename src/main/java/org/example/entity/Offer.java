@@ -5,6 +5,7 @@ import org.example.base.entity.BaseEntity;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -14,13 +15,10 @@ import java.util.Date;
 @ToString
 @Entity
 public class Offer extends BaseEntity<Integer> {
-//    @Temporal(TemporalType.DATE)
     private Duration DurationOfWork;
-    @Temporal(TemporalType.DATE)
-    private Date SuggestedTimeToStartWork;
+    private LocalDate SuggestedTimeToStartWork;
     private double RecommendedPrice;
-    @Temporal(TemporalType.DATE)
-    private Date dateRegisterOffer;
+    private LocalDate dateRegisterOffer;
     @ManyToOne
     private Expert expert;
 

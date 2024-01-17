@@ -3,10 +3,9 @@ package org.example.service.dto;
 import lombok.Getter;
 import org.example.entity.enumaration.Permission;
 import org.example.entity.enumaration.Roll;
-
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+
 @Getter
 public class CustomerRegisterDto implements Serializable {
     private String firstName;

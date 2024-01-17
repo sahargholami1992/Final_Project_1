@@ -1,11 +1,13 @@
 package org.example.service.impl;
 
 import org.example.entity.Expert;
-import org.example.entity.SubService;
+import org.example.entity.enumaration.ExpertStatus;
 import org.example.repository.ExpertRepository;
 import org.example.service.ExpertService;
 import org.example.service.dto.ExpertRegisterDto;
 import org.example.service.user.UserServiceImpl;
+
+import javax.persistence.NoResultException;
 
 public class ExpertServiceImpl extends UserServiceImpl<Expert, ExpertRepository>
                               implements ExpertService {
@@ -34,9 +36,17 @@ public class ExpertServiceImpl extends UserServiceImpl<Expert, ExpertRepository>
     public void changeExpertStatus(Expert expert) {
         repository.updateExpert(expert);
     }
-//    @Override
-//    public void saveExpert(SubService subService, Expert expert) {
-//        repository.saveExpert(subService,expert);
-//    }
+@Override
+public Expert logIn(String email, String password) {
+
+    Expert user = repository.findByEmail(email).
+            orElseThrow(() -> new NoResultException("userName or password is wrong"));
+
+    if (password.equals(user.getPassword()) && !user.getExpertStatus().equals(ExpertStatus.AWAITING_CONFIRMATION)) {
+        return user;
+    }
+    throw new RuntimeException("userName or password is wrong or you are new yet");
+
+}
 
 }

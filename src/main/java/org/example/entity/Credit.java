@@ -2,9 +2,8 @@ package org.example.entity;
 
 import lombok.*;
 import org.example.base.entity.BaseEntity;
-
 import javax.persistence.Entity;
-import java.util.Date;
+
 
 @Getter
 @Setter

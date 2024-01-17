@@ -46,7 +46,10 @@ public class AdminServiceImpl extends UserServiceImpl<Admin, AdminRepository>
 
     @Override
     public void deleteExpertFromSubService(SubService subService, Expert expert) {
-        subServiceService.deleteByEXPERT(subService,expert);
+        if (subService != null && expert != null && expert.getExpertStatus().equals(ExpertStatus.ACCEPTED) && subService.getExperts().contains(expert) ) {
+            subServiceService.deleteByEXPERT(subService, expert);
+        }else throw new NullPointerException(" Expert or SubService not found in the database or ExpertStatus is not equals ACCEPTED  ");
+
     }
 
     @Override
@@ -86,5 +89,10 @@ public class AdminServiceImpl extends UserServiceImpl<Admin, AdminRepository>
     @Override
     public boolean existByServiceName(String serviceName) {
         return serviceService.existByServiceName(serviceName);
+    }
+
+    @Override
+    public void editSubService(String subServiceName, double price, String description) {
+        subServiceService.editSubService(subServiceName,price,description);
     }
 }

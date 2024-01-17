@@ -2,7 +2,9 @@ package org.example.utill;
 
 
 import lombok.Getter;
-import org.example.entity.User;
+import org.example.entity.Admin;
+import org.example.entity.Customer;
+import org.example.entity.Expert;
 
 
 public class SecurityContext {
@@ -11,12 +13,24 @@ public class SecurityContext {
     }
 
     @Getter
-    private static User currentUser;
+    private static Admin currentAdmin;
+
+    @Getter
+    private static Customer currentCustomer;
+
+    @Getter
+    private static Expert currentExpert;
 
 
 
-    public static void fillContext(User user) {
-        currentUser = user;
+    public static void fillContext(Admin admin) {
+        currentAdmin = admin;
+    }
+    public static void fillContext(Expert expert) {
+        currentExpert = expert;
+    }
+    public static void fillContext(Customer customer) {
+        currentCustomer = customer;
     }
 
 

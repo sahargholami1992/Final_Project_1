@@ -1,7 +1,6 @@
 package org.example.repository.user;
 
 import org.example.base.repository.BaseRepositoryImpl;
-import org.example.entity.Service;
 import org.example.entity.User;
 
 import javax.persistence.EntityManager;
@@ -33,9 +32,9 @@ public abstract class UserRepositoryImpl<T extends User> extends BaseRepositoryI
         return query.getSingleResult() > 0;
     }
     @Override
-    public Optional<User> findByEmail(String email){
-        TypedQuery<User> query = entityManager.createQuery(
-                "select u from " + getEntityClass().getSimpleName() + " u WHERE u.email =:email ", User.class);
+    public Optional<T> findByEmail(String email){
+        TypedQuery<T> query = entityManager.createQuery(
+                "select u from " + getEntityClass().getSimpleName() + " u WHERE u.email =:email ", getEntityClass());
         query.setParameter("email", email);
         return Optional.ofNullable(query.getSingleResult());
     }

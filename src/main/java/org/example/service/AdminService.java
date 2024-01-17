@@ -19,7 +19,5 @@ public interface AdminService extends UserService<Admin> {
     Collection<Expert> showAllExpert();
     void changeExpertStatus(Expert expert);
     boolean existByServiceName(String serviceName);
-
-
-
+    void editSubService(String subServiceName, double price, String description);
 }

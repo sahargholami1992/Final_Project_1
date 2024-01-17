@@ -9,5 +9,5 @@ public interface UserRepository<T extends User> extends BaseRepository<Integer,T
     void updatePassword(String email, String newPassword);
 
     boolean existByEmail(String email);
-    Optional<User> findByEmail(String email);
+    Optional<T> findByEmail(String email);
 }

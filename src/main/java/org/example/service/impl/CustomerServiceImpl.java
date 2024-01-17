@@ -1,7 +1,6 @@
 package org.example.service.impl;
 
 import org.example.entity.Customer;
-import org.example.entity.Expert;
 import org.example.entity.Service;
 import org.example.entity.SubService;
 import org.example.repository.CustomerRepository;

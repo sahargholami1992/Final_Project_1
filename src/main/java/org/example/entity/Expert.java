@@ -4,9 +4,7 @@ import lombok.*;
 import org.example.entity.enumaration.ExpertStatus;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter

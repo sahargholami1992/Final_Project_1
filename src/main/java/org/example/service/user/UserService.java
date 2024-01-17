@@ -6,5 +6,5 @@ import org.example.entity.User;
 public interface UserService<T extends User> extends BaseService<Integer,T> {
     void changePassword(String email, String newPassword);
     boolean existByEmail(String email);
-    User logIn(String email, String password);
+    T logIn(String email, String password);
 }

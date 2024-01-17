@@ -6,7 +6,6 @@ import org.example.entity.enumaration.StatusOrder;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 @Getter
 public class OrderDto implements Serializable {
     private String address;

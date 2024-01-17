@@ -4,6 +4,8 @@ import org.example.base.service.BaseServiceImpl;
 import org.example.entity.User;
 import org.example.repository.user.UserRepository;
 
+import javax.persistence.NoResultException;
+
 public class UserServiceImpl<T extends User,R extends UserRepository<T>> extends BaseServiceImpl<Integer,T,R>
                                    implements UserService<T>{
     public UserServiceImpl(R repository) {
@@ -22,14 +24,14 @@ public class UserServiceImpl<T extends User,R extends UserRepository<T>> extends
     }
 
     @Override
-    public User logIn(String email, String password) {
-        User user = repository.findByEmail(email).
-                orElseThrow(() -> new RuntimeException("userName or password is wrong"));
+    public T logIn(String email, String password) {
+        T user = repository.findByEmail(email).
+                orElseThrow(() -> new NullPointerException("userName or password is wrong"));
 
         if (password.equals(user.getPassword())){
             return user;
         }
-        throw new RuntimeException("userName or password is wrong");
+        throw new NoResultException("userName or password is wrong");
 
     }
 }

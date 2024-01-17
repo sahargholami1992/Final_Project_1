@@ -1,13 +1,9 @@
 package org.example.utill;
 
 import org.apache.commons.lang3.StringUtils;
-import org.example.Application;
 
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -30,46 +26,14 @@ public class Validation {
         Pattern pattern = Pattern.compile(PASSWORD_REGEX);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
-//        return password != null && password.matches(PASSWORD_REGEX);
     }
 
     public static boolean containsOnlyAlphabetsAndSpaces(String input) {
-        // Alphabets and spaces only
         return input.matches(STRING_REGEX) && !StringUtils.isBlank(input);
     }
 
-    public static boolean isValidNationalCodeAndPostalCodeWithRegex(String nationalCode) {
-        Pattern pattern = Pattern.compile("^[0-9]{10}$");
-        return nationalCode.matches(pattern.pattern());
-    }
-
-    public static boolean validateImage(String imagePath)  {
-        File imageFile = new File(imagePath);
-
-        // Check image format based on file extension
-        String fileName = imageFile.getName();
-        if (!fileName.toLowerCase().endsWith(".jpg")) {
-            System.out.println("Image must be in JPG format.");
-            return false;
-        }
-
-        // Check image size
-        long fileSizeInKB = 0;
-        try {
-            fileSizeInKB = Files.size(Paths.get(imagePath)) / 1024;
-        } catch (IOException e) {
-            return false;
-        }
-        if (fileSizeInKB > 300) {
-            System.out.println("Image size exceeds the maximum limit of 300 kilobytes.");
-            return false;
-        }
-        return true;
-    }
 
     public static byte[] readsImage(String imageName)  {
-        // Assuming "image.jpg" is the name of your image file in the resources folder
-
         InputStream inputStream = Validation.class.getClassLoader().getResourceAsStream(imageName);
         if (inputStream != null){
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -84,33 +48,24 @@ public class Validation {
                 }
                 byteArrayOutputStream.write(buffer, 0, bytesRead);
             }
-
             return byteArrayOutputStream.toByteArray();
         }else{
             System.out.println("invalid image name");
             return null;
         }
-
-
     }
-
-
 
 
     public static boolean isValidImage(byte[] imageData) {
         try {
-            // Validate image format (JPEG)
             if (imageData == null || !isJpegFormat(imageData)) {
                 System.out.println("Invalid image format. Only JPEG format is allowed.");
                 return false;
             }
-
-            // Validate image size (300 KB)
             if (!isWithinSizeLimit(imageData)) {
                 System.out.println("Image size exceeds the maximum limit (300 KB).");
                 return false;
             }
-
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -119,12 +74,9 @@ public class Validation {
     }
 
     private static boolean isJpegFormat(byte[] imageData) throws IOException {
-        // Read the first two bytes to identify the image format
         if (imageData.length < 2) {
             return false;
         }
-
-        // JPEG magic number: 0xFFD8
         return (imageData[0] & 0xFF) == 0xFF && (imageData[1] & 0xFF) == 0xD8;
     }
 
@@ -134,15 +86,6 @@ public class Validation {
 
 
 
-    public static byte[] readImage(String imagePath) {
-        try {
-            Path path = Paths.get(imagePath);
-            return Files.readAllBytes(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
     public static boolean saveImageToFile(byte[] imageData, String outputPath) {
         try (OutputStream outputStream = new FileOutputStream(outputPath)) {
             outputStream.write(imageData);
@@ -181,41 +124,10 @@ public class Validation {
         return !StringUtils.isBlank(string);
     }
     public static LocalDate validateAndProcessDate(String inputDate) {
-        // Define the desired date format
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        // Parse the input date
         return LocalDate.parse(inputDate, formatter);
 
     }
-
-
-        public static boolean getBooleanInputWithValidation (String prompt, Scanner scanner){
-            boolean validInput = false;
-            boolean userInput = false;
-
-            while (!validInput) {
-                System.out.print(prompt + " (true/false): ");
-
-                try {
-                    userInput = scanner.nextBoolean();
-                    validInput = true; // If no exception is thrown, the input is valid
-                } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter 'true' or 'false'.");
-                    scanner.nextLine(); // Consume the invalid input to avoid an infinite loop
-                }
-            }
-
-            return userInput;
-        }
-
-        public static Date getDate ( int year, int month, int day){
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, year);
-            calendar.set(Calendar.MONTH, month);
-            calendar.set(Calendar.DAY_OF_MONTH, day);
-            return calendar.getTime();
-        }
 
     }
 

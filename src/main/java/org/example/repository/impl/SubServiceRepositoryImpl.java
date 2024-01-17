@@ -24,21 +24,6 @@ public class SubServiceRepositoryImpl extends BaseRepositoryImpl<Integer, SubSer
         return SubService.class;
     }
 
-//    @Override
-//    public void deleteByEXPERT(SubService subService, Expert expert) {
-//        subService.getExperts().remove(expert);
-//        saveOrUpdate(subService);
-//    }
-
-//    @Override
-//    public void saveExpert(SubService subService, Expert expert) {
-//        Set<Expert> experts = new HashSet<>();
-//        experts.add(expert);
-//        subService.setExperts(experts);
-//        saveOrUpdate(subService);
-//    }
-
-
     @Override
     public void updateSubService(String subServiceName, double price, String description) {
         beginTransaction();
@@ -65,6 +50,5 @@ public class SubServiceRepositoryImpl extends BaseRepositoryImpl<Integer, SubSer
                 "select count(su) from SubService su where su.subServiceName = :subServiceName ", Long.class);
         query.setParameter("subServiceName", subServiceName);
         return query.getSingleResult() > 0;
-
     }
 }

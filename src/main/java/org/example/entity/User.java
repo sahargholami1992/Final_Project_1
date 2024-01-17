@@ -7,10 +7,8 @@ import org.example.entity.enumaration.Roll;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Getter
 @Setter
@@ -25,11 +23,6 @@ public class User extends BaseEntity<Integer> {
     @NotBlank
     @Column(unique = true)
     private String email;
-//    @Size(min = 8, message = "Password must be at least 8 characters long")
-//    @Pattern(
-//            regexp = "^(?=.*[a-zA-Z])(?=.*[0-9]).*$",
-//            message = "Password must contain both letters and numbers"
-//    )
     @NotBlank
     private String password;
     private LocalDate dateRegister;
